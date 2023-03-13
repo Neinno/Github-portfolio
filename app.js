@@ -1,4 +1,3 @@
-import { getData } from "./modules/getData.js";
+import { router } from './modules/routes.js'
 
-getData();
-
+router();
