@@ -7,7 +7,7 @@ export async function getData() {
 
     // Getting the username
     const { data: { login }, } = await octokit.rest.users.getAuthenticated();
-      console.log("Hello, %s", login);
+    console.log("Hello, %s", login);
 
       // Getting the profile picture
     const { data: { avatar_url } } = await octokit.rest.users.getAuthenticated();
