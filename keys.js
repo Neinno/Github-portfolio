@@ -1,1 +1,1 @@
-export const token = `TOKEN HERE`
+export const token = `GITHUB TOKEN HERE`
