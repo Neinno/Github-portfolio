@@ -22,11 +22,20 @@ export function renderRepo(filterRepo) {
     repoList.appendChild(createListItem);
 
     const repoLink = document.createElement("a");
-    repoLink.setAttribute('href', `#projects/#${repo.name}`);
+    // repoLink.setAttribute('href', `projects/#${repo.name}`);
     createListItem.appendChild(repoLink);
 
-    const repoText = document.createElement("p");
-    repoText.textContent = repo.name;
-    createListItem.appendChild(repoText);
+    const repoTitle = document.createElement("h2");
+    repoTitle.textContent = repo.name;
+    createListItem.appendChild(repoTitle);
+
+    const repoDescription = document.createElement("p")
+    repoDescription.textContent = repo.description;
+    createListItem.appendChild(repoDescription);
+
+    const repoLanguage = document.createElement("div")
+    repoLanguage.textContent = repo.language;
+    repoLanguage.setAttribute('data-language', repo.language);
+    createListItem.appendChild(repoLanguage);
   });
 }

@@ -1,14 +1,15 @@
 import { openProjects, closeProjects } from "./interaction.js"
-import { getData } from "./getData.js";
+import { getUserData, getRepoData } from "./getData.js";
 
 export function router() {
+    getRepoData()
 
     routie({
         '': () => {
-            getData()
+            getUserData()
         },
-        'projects': () => {
-            getData()
+        'github': () => {
+            getUserData()
             openProjects()
             closeProjects()
         },

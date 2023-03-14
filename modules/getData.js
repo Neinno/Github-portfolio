@@ -2,25 +2,31 @@ import { Octokit, App } from "https://cdn.skypack.dev/octokit";
 import { token } from "../keys.js"
 import { renderUser, renderAvatar, renderRepo } from "./render.js"
 
-export async function getData() {
-    const octokit = new Octokit({ auth: token});
+const octokit = new Octokit({ auth: token});
 
-    // Getting the username
-    const { data: { login }, } = await octokit.rest.users.getAuthenticated();
+export async function getUserData() {
+  // Getting the username
+  const { data: { login }, } = await octokit.rest.users.getAuthenticated();
 
-      // Getting the profile picture
-    const { data: { avatar_url } } = await octokit.rest.users.getAuthenticated();
-    
-    // Getting repositories
-    const { data: repositories } = await octokit.rest.repos.listForAuthenticatedUser({
-            // Data for repos
-        });
-    // Filter data by using map
-    const filterRepo = repositories.map(repo => ({
-      name: repo.name,
-    }))
+  // Getting the profile picture
+  const { data: { avatar_url } } = await octokit.rest.users.getAuthenticated();
+ 
+  renderUser(login)
+  renderAvatar(avatar_url)  
+}
 
-     renderUser(login)
-     renderAvatar(avatar_url)
-     renderRepo(filterRepo)    
+export async function getRepoData() {
+  // Getting repositories
+  const { data: repositories } = await octokit.rest.repos.listForAuthenticatedUser();
+
+  console.log(repositories)
+  // Filter data by using map
+  const filterRepo = repositories.map(repo => ({
+    name: repo.name,
+    description: repo.description,
+    language: repo.language,
+  }))
+  console.log(filterRepo)
+
+  renderRepo(filterRepo)    
 }
