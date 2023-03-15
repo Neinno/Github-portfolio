@@ -1,3 +1,5 @@
+const mainSection = document.querySelector("main");
+
 const repoList = document.querySelector("main > ul");
 const navList = document.querySelector("nav");
 const menuList = document.querySelector("nav ul");
@@ -36,4 +38,18 @@ export function closeProjects() {
             menuButtonThree.classList.remove('hideMenuButton')     
         })
     }  
+}
+
+export function flipCard() {
+    const aboutLabel = document.querySelector("main > aside")
+    const backLabel = document.querySelector("section:nth-of-type(2) > aside")
+    aboutLabel.addEventListener("click", function() {
+        mainSection.classList.add('flipCard')
+        aboutLabel.classList.add("hideMenuButton")
+    })
+
+    backLabel.addEventListener("click", function() {
+        mainSection.classList.remove('flipCard')
+        aboutLabel.classList.remove("hideMenuButton")
+    })
 }

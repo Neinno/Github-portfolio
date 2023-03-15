@@ -1,8 +1,13 @@
 // Render login (Github Username)
 export function renderUser(login) {
-    const username = document.querySelector("h1");
+  const username = document.querySelector("a");
 
-    username.innerHTML = `Nigel "${login}" Fijnheer`;
+  username.innerHTML = `@${login} <i class="fa-solid fa-angles-right"></i>`;
+}
+
+export function renderGithubLink(html_url) {
+  const githubLink = document.querySelector("a");
+  githubLink.setAttribute("href", html_url)
 }
 
 // Render Avatar
@@ -22,7 +27,7 @@ export function renderRepo(filterRepo) {
     repoList.appendChild(createListItem);
 
     const repoLink = document.createElement("a");
-    // repoLink.setAttribute('href', `projects/#${repo.name}`);
+    repoLink.setAttribute('href', repo.url);
     createListItem.appendChild(repoLink);
 
     const repoTitle = document.createElement("h2");
