@@ -47,9 +47,8 @@ main {
 
 body > h1 {
     position: absolute;
-    font-size: 50vw;
+    font-size: 25vw;
     opacity: 0.1;
-    text-overflow: clip;
 }
 
 h1:nth-of-type(2) {
@@ -65,6 +64,20 @@ a {
     color: inherit;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    opacity: .2;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 2em;
+  }
+
 
 /* ///////////// */
 /* Personal data */
@@ -73,6 +86,7 @@ main section:first-of-type {
     display: grid;
     place-items: center;
     margin: 10vh 1em;
+    transition: .2s;
 }
 
 main section:first-of-type a {
@@ -119,42 +133,29 @@ aside {
     z-index: 1;
     transform-style: preserve-3d;
     cursor: pointer;
-}
-
-main > aside::after {
-    content: "";
-    height: 2.5em;
-    width: 4em;
-    background-color: var(--main-color);
-    position: absolute;
-    left: 1em;
-    top: 0.2em;
-    transform-origin: top right;
-    transform: rotate(-45deg) translateZ(-1px);
     transition: .3s;
 }
 
-main > aside::before {
-    content: "";
-    height: 2.5em;
-    width: 3em;
-    background-color: var(--main-color);
-    position: absolute;
-    transform: translateX(-100%);
-    right: -3em;
-    top: 0;
-    z-index: -1;
-    transition: .3s;
+aside i {
+    vertical-align: middle;
 }
 
-aside:hover::before {
-    transform: translateX(0px);  
+main > aside i {
+    margin-left: .5em;
 }
 
-aside:hover::after {
-    left: 4.4em;
-    
+section > aside i {
+    margin-right: .5em;
 }
+
+section > aside:hover {
+    transform: translatex(-.3em);
+}
+
+main > aside:hover {
+    transform: translatex(.3em);
+}
+
 
 
 /* ////////// */
@@ -230,8 +231,22 @@ nav li:nth-of-type(2) {
    box-shadow: 0 0 1em .5em rgba(0,0,0,0.75);
 }
 
+/* ////////// */
+/* Projects Menu  */
+/* ////////// */
+main > section:nth-of-type(3) {
+    position: absolute;
+    height: 65%;
+    width: 100%;
+    top: 5em;
+    left: 0;
+    padding: 0 1em;
+}
 
+main > section:nth-of-type(3) ul {
+    background-color: black;
 
+}
 
 
 /* ////////// */
@@ -266,7 +281,6 @@ main > ul li {
 }
 
 main > ul li:hover {
-   
     background-color: var(--main-color);
  
 }
@@ -311,10 +325,69 @@ main > ul li a {
     color: black;
 }
 
+[data-language="Design"] {
+    background-color: #c8d5ff;
+    color: black;
+}
+
+form {
+    display: flex;
+    gap: 1em;
+    position: absolute;
+    font-size: .8em;
+    bottom: 28.5em;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: .3s;
+}
+
+form input[type="checkbox"] {
+    display: none;
+}
+
+body:has(#githubprojects:checked) form label:first-of-type {
+    background-color: var(--main-color);
+}
+
+[data-projecttype="githubrepo"] {
+    display: none;
+}
+
+body:has(#githubprojects:checked) [data-projecttype="githubrepo"] {
+    display: block;
+}
+
+[data-projecttype="projects"] {
+    display: none;
+}
+
+body:has(#otherprojects:checked) [data-projecttype="projects"] {
+    display: block;
+}
+
+body:has(#otherprojects:checked) form label:nth-of-type(2) { 
+    background-color: var(--main-color);
+}
+
+form label  {
+    cursor: pointer;
+    background-color: var(--bg-color);
+    outline: .2em solid var(--main-color);
+    padding: .5em 1em;
+    display: grid;
+    width: 10em;
+    place-content: center;
+    transition: .3s;
+}
+
+form label:hover label {
+    font-size: 1em;
+}
+
+
 /* ///////////////// */
 /* Backside         */
 /* ///////////////// */
-
 section:nth-of-type(2) {
     position: absolute;
     width: 100%;
@@ -330,12 +403,82 @@ section:nth-of-type(2) {
           rgba(255, 255, 255, 0.1) 10% 15%    
     );
     padding: 4em 1em;
+    overflow: hidden;
 }
 
 section:nth-of-type(2) aside {
     left: 0;
     display: table;
 }
+
+section:nth-of-type(2) h2 {
+    margin-bottom: 1em;
+}
+
+section:nth-of-type(2) h2,
+section:nth-of-type(2) p  {
+    user-select: none;
+}
+
+section:nth-of-type(2) button {
+    border: none;
+    background-color: var(--main-color);
+    color: inherit;
+    font: inherit;
+    position: absolute;
+    bottom: 0em;
+    width: 7em;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    bottom: -3em;
+    transition: .2s;
+    cursor: pointer;
+}
+
+section:nth-of-type(2) button:hover {
+    outline: .2em solid var(--main-color);   
+    background-color: var(--bg-color);
+}
+
+section:nth-of-type(2) button:first-of-type {
+    left: -2em;
+    padding: 0 0 2em 2em;
+}
+
+section:nth-of-type(2) button:nth-of-type(2){   
+    right: -2em;
+    padding: 0 2em 2em 0;
+}
+
+section:nth-of-type(2) button > a {
+    aspect-ratio: 1/1;
+    position: absolute;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    width: 2.25em;
+    display: grid;
+    place-content: center;
+    transition: .3s;
+}
+
+section:nth-of-type(2) button:first-of-type > a:first-of-type {
+    top: -1.75em;
+    right: -1.75em;  
+    transform: translateY(200%) translateX(-200%) scale(0);
+}
+
+section:nth-of-type(2) button:nth-of-type(2) > a:first-of-type {
+    top: -1.75em;
+    left: -1.75em;
+    transform: translateY(200%) translateX(200%) scale(0);
+}
+
+section:nth-of-type(2) button:nth-of-type(2) > a:nth-of-type(2) {
+    top: 1.25em;
+    left: -3em;
+    transform: translateY(200%) translateX(200%) scale(0);
+}
+
 
 
 /* ///////////////// */
@@ -354,6 +497,58 @@ section:nth-of-type(2) aside {
     }
 }
 
+@keyframes flipCardScale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+        box-shadow: 0 0 2em .1em rgba(255,255,255,0.75);
+    }
+}
+
+@keyframes flipCardRotate {
+    0% {
+        transform: scale(1.2);
+        box-shadow: 0 0 3em .1em rgba(255,255,255,0.75);
+    }
+    50% {
+        transform: rotateY(180deg) scale(1.2);
+        box-shadow: 0 0 3em .1em rgba(255,255,255,0.75);
+    }
+    100% {
+        transform: rotateY(180deg) scale(1);
+        box-shadow: 0 0 1em .1em rgba(255,255,255,0.75);
+    }
+}
+
+@keyframes flipCardScaleBack {
+    from {
+        transform: scale(1) rotateY(180deg);
+        box-shadow: 0 0 1em .1em rgba(255,255,255,0.75);
+    }
+    to {
+        transform: scale(1.2) rotateY(180deg);
+        box-shadow: 0 0 3em .1em rgba(255,255,255,0.75);
+    }
+}
+
+@keyframes flipCardRotateBack {
+    0% {
+        transform: scale(1.2)  rotateY(180deg);
+        box-shadow: 0 0 3em .1em rgba(255,255,255,0.75);
+    }
+    50% {
+        transform: rotateY(0) scale(1.2);
+        box-shadow: 0 0 3em .1em rgba(255,255,255,0.75);
+    }
+    100% {
+        transform: rotateY(0) scale(1);
+        box-shadow: 0 0 1em .1em rgba(255,255,255,0.75);
+    }
+}
+
+
 
 /* ///////////////// */
 /* Classes (For js)  */
@@ -371,7 +566,15 @@ section:nth-of-type(2) aside {
 }
 
 .menuPosition {
-    transform: translateY(-21.5em) translateX(-50%);
+    transform: translateY(-25em) translateX(-50%);
+}
+
+.showForm {
+    transform: translateX(-50%) scale(1);
+}
+
+.hidePersonalInfo {
+    transform: scale(0);
 }
 
 .changeMenu {
@@ -379,5 +582,13 @@ section:nth-of-type(2) aside {
 }
 
 .flipCard {
-    transform: rotateY(180deg);
+    animation: flipCardScale .5s forwards, flipCardRotate .5s forwards .5s;
+}
+
+.flipCardBack {
+    animation: flipCardScaleBack .5s forwards, flipCardRotateBack .5s forwards .5s;
+}
+
+.setInfoBall {
+    transform: translateY(0%) translateX(0%) scale(1) !important;
 }

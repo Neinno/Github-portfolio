@@ -1,16 +1,16 @@
-import { openProjects, closeProjects, flipCard } from "./interaction.js"
+import { openProjects, closeProjects, flipCard, expandButton } from "./interaction.js"
 import { getUserData, getRepoData } from "./getData.js";
 
 export function router() {
     getRepoData()
+    getUserData()
 
     routie({
         '': () => {
-            flipCard()
-            getUserData()
+            flipCard() 
+            expandButton()   
         },
-        'github': () => {
-            getUserData()
+        'projects': () => {
             openProjects()
             closeProjects()
         },

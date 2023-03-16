@@ -25,6 +25,7 @@ export function renderRepo(filterRepo) {
     // Create a new list item element and append it to list.
     const createListItem = document.createElement("li");
     repoList.appendChild(createListItem);
+    createListItem.setAttribute('data-projecttype', 'githubrepo')
 
     const repoLink = document.createElement("a");
     repoLink.setAttribute('href', repo.url);
