@@ -37,21 +37,28 @@ export function openProjects() {
 export function closeProjects() {
     if (centerButtonIcon.classList.contains('showX')) {
         centerButton.addEventListener("click", function() {
-           
-            personalInfo.classList.remove('hidePersonalInfo')
+            personalInfo.classList.remove('hidePersonalInfo');
 
             repoList.classList.remove('showProjects');
             navList.classList.remove('menuPosition');
             menuList.classList.remove('changeMenu');
-            formButtons.classList.remove('showForm')
+
+            formButtons.classList.remove('showForm');
 
             centerButtonIcon.classList.remove('showX');
-            centerButtonText.innerHTML = "Projects"
+            centerButtonText.innerHTML = "Projects";
 
             menuButtonOne.classList.remove('hideMenuButton');
             menuButtonThree.classList.remove('hideMenuButton');
-
-            history.back()
+            
+            if (window.location.hash) {
+                history.back();
+            } else {
+            
+                window.location.href = '';
+            }
+            
+            currentPage = '';
         })
     } 
 }

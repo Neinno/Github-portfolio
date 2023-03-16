@@ -4,6 +4,7 @@ import { getUserData, getRepoData } from "./getData.js";
 export function router() {
     getRepoData()
     getUserData()
+  
 
     routie({
         '': () => {
@@ -12,7 +13,7 @@ export function router() {
         },
         'projects': () => {
             openProjects()
-            closeProjects()
+            closeProjects() 
         },
     })
 }
