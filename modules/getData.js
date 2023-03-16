@@ -20,7 +20,6 @@ export async function getRepoData() {
   // Getting repositories
   const { data: repositories } = await octokit.rest.repos.listForAuthenticatedUser();
 
-  console.log(repositories)
   // Filter data by using map
   const filterRepo = repositories
   .map(repo => ({
@@ -31,7 +30,6 @@ export async function getRepoData() {
     owner: repo.owner.login
   }))
   .filter(repo => repo.owner === 'Neinno');
-  console.log(filterRepo)
 
   renderRepo(filterRepo)    
 }
